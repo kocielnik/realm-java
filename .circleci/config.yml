@@ -1,0 +1,43 @@
+# configuration pilfered from https://circleci.com/docs/2.0/language-android/
+version: 2
+
+jobs:
+  build:
+    environment:
+      TARGET_SDK_VERSION: 26
+
+    # https://circleci.com/docs/2.0/configuration-reference/#docker--machine-executor
+    docker:
+      - image: circleci/android:api-${TARGET_SDK_VERSION}-alpha
+      - image: ghost:2-alpine   # test against latest 2.x version of Ghost
+
+    steps:
+      # https://circleci.com/docs/2.0/configuration-reference/#checkout
+      - checkout
+
+      # https://circleci.com/docs/2.0/configuration-reference/#restore_cache
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+      - run:
+          name: Provide Dependencies
+          command: ./configure
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew assemble
+
+      # https://circleci.com/docs/2.0/configuration-reference/#save_cache
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+      # https://circleci.com/docs/2.0/configuration-reference/#store_artifacts
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+
+      # https://circleci.com/docs/2.0/configuration-reference/#store_test_results
+      - store_test_results:
+          path: app/build/test-results
