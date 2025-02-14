@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.android.tools.lint</groupId>
+	<artifactId>lint</artifactId>
+	<version>25.2.2</version>
+	<packaging>jar</packaging><properties>
+		
+			<debian.com.android.tools.lint.lint-checks.originalVersion>25.2.2</debian.com.android.tools.lint.lint-checks.originalVersion>
+		
+			<debian.org.eclipse.jdt.core.compiler.ecj.originalVersion>4.5.1</debian.org.eclipse.jdt.core.compiler.ecj.originalVersion>
+		
+			<debian.originalVersion>25.2.2</debian.originalVersion>
+		
+			<debian.package>libgradle-android-plugin-java</debian.package>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.android.tools.lint</groupId>
+			<artifactId>lint-checks</artifactId>
+			<version>debian</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>debian</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>
