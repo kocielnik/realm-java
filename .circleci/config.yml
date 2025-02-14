@@ -21,7 +21,7 @@ jobs:
 
       - run:
           name: Populate ~/.m2 directory
-          command: ./configure && ls /home/circleci/.m2/repository/com/android/tools/build/gradle/2.2.2/gradle-2.2.2.pom
+          command: ./gradlew copyFromLib && ls ${HOME}/.m2/repository/com/android/tools/build/gradle/2.2.2/gradle-2.2.2.pom
 
       - run:
           name: Download Dependencies

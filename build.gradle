@@ -415,3 +415,13 @@ release {
 task wrapper(type: Wrapper) {
     gradleVersion = project.gradleVersion
 }
+
+task copyFromLib(type: Copy) {
+    into "${System.env.HOME}/.m2"
+    from "$buildDir/outputs/lib"
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/outputs/lib"
+    from configurations.runtime
+}
